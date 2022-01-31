@@ -28,6 +28,8 @@ void setup()
   //y confirmamos conn enter
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(3000);
+  //Si el terminal no se quedara en primer plano porque se quede abierto la ventana de inicio se podría poner descomentar lo que está comentado a continuación ya que
+  //lo que hace es cerrar la ventana de inicio y pulsar alt+tab para traer cmd a primer plano
   //DigiKeyboard.sendKeyStroke(0,MOD_GUI_LEFT);
   //DigiKeyboard.delay(1800);
   //DigiKeyboard.sendKeyStroke(0,MOD_GUI_LEFT);
